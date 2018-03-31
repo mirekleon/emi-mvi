@@ -6,6 +6,7 @@
         "squizlabs/php_codesniffer": "3.*"
     },
     "autoload": {
-        "psr-4": {"MVI\\": "src/"}
+        "psr-4": {"MVI\\": "src/"},
+        "files": ["src/Util/functions.php"]
     }
 }
