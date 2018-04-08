@@ -3,55 +3,51 @@
 namespace MVI\Component\Http;
 
 use MVI\Component\Factory\Factory;
+use MVI\Component\Http\RequestBase;
+use MVI\Component\Http\RequestMethods;
 use MVI\Component\Access\PropertyMapper;
-use MVI\Component\Access\PropertyAccess;
-use MVI\Component\Factory\FactoryBuilder;
 use MVI\Exception\InvalidArgumentException;
-use MVI\Interfaces\RequestProviderInterface;
 use MVI\Component\Http\Exception\RequestException;
-use MVI\Component\Access\MappablePropertyInterface;
-use MVI\Component\Access\SettablePropertyInterface;
-use MVI\Component\Access\GettablePropertyInterface;
 
 /**
  * This file is part of the MVI package.
  *
  * Copyright (c) Qualcomm
  */
-class Request extends PropertyAccess implements
-    RequestProviderInterface,
-    MappablePropertyInterface,
-    SettablePropertyInterface,
-    GettablePropertyInterface
+class Request extends RequestBase
 {
     /**
      *
      */
-    protected $cache;
+    protected $requestHeaders;
     /**
      *
      */
-    protected $method;
+    protected $requestCache;
     /**
      *
      */
-    protected $url;
+    protected $requestMethod;
     /**
      *
      */
-    protected $send;
+    protected $requestUrl;
+    /**
+     *
+     */
+    protected $requestData;
     /**
      *
      */
     public function cache($cache)
     {
         $value = filter_var($cache, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
-        if ($value === null) {
+        if (null === $value) {
             throw new InvalidArgumentException(
                 'Argument must be a valid boolean, ' . gettype($cache) . ' given!'
             );
         }
-        $this->cache = (boolean) $cache;
+        $this->requestCache = (boolean) $cache;
         return $this;
     }
     /**
@@ -62,7 +58,15 @@ class Request extends PropertyAccess implements
         if (!RequestMethods::hasMethod($method)) {
             throw new RequestException('Unknown http request method!');
         }
-        $this->method = strtoupper($method);
+        $this->requestMethod = strtoupper($method);
+        return $this;
+    }
+    /**
+     *
+     */
+    public function headers(array $headers)
+    {
+        $this->requestHeaders = $headers;
         return $this;
     }
     /**
@@ -70,15 +74,15 @@ class Request extends PropertyAccess implements
      */
     public function url($url)
     {
-        $this->url = $url;
+        $this->requestUrl = $url;
         return $this;
     }
     /**
      *
      */
-    public function send($send)
+    public function send($data)
     {
-        $this->send = $send;
+        $this->requestData = $data;
         return $this;
     }
     /**
@@ -86,14 +90,7 @@ class Request extends PropertyAccess implements
      */
     public function make()
     {
-        $mapper = new PropertyMapper;
-        $mapper->map($this);
-        $factory = new Factory();
-        $factory->set('request.cache', $this->get('cache'))
-                ->set('request.method', $this->get('method'))
-                ->set('request.url', $this->get('url'))
-                ->set('request.data', $this->get('send'));
-        $factory = $mapper->bindTo($factory);
+        $factory = parent::make();
         return $factory;
     }
 }

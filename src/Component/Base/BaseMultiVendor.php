@@ -17,7 +17,7 @@ abstract class BaseMultiVendor
     /**
      * Mvi Version
      */
-    const VERSION = 'v3.0.0';
+    private const VERSION = 'v3.0.0';
     /**
      * ContainerProviderInterface
      */
@@ -121,14 +121,14 @@ abstract class BaseMultiVendor
      * Get RequestProviderInterface
      * @return Mixed
      */
-    public function getMultiVendorRequest()
+    public function getMultiVendorRequest($recreate = false)
     {
         if (!$this->multiVendorRequest instanceof RequestProviderInterface) {
             throw new MviException(
                 'RequestProviderInterface instance not found!'
             );
         }
-        return $this->multiVendorRequest;
+        return ($recreate === true) ? new $this->multiVendorRequest : $this->multiVendorRequest;
     }
     /**
      * @access public
@@ -145,14 +145,14 @@ abstract class BaseMultiVendor
      * Get ResponseProviderInterface
      * @return Mixed
      */
-    public function getMultiVendorResponse()
+    public function getMultiVendorResponse($recreate = false)
     {
         if (!$this->multiVendorResponse instanceof ResponseProviderInterface) {
             throw new MviException(
                 'ResponseProviderInterface instance not found!'
             );
         }
-        return $this->multiVendorResponse;
+        return ($recreate === true) ? new $this->multiVendorResponse : $this->multiVendorResponse;
     }
     /**
      * @access public
@@ -161,5 +161,14 @@ abstract class BaseMultiVendor
     public function __toString()
     {
         return get_called_class();
+    }
+    /**
+     * @access public
+     * Get VERSION
+     * @return self::VERSION
+     */
+    public function getMultiVendorVersion()
+    {
+        return self::VERSION;
     }
 }
