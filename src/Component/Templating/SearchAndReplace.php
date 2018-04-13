@@ -5,9 +5,7 @@ namespace MVI\Component\Templating;
 use MVI\Exception\InvalidArgumentException;
 
 /**
- * This file is part of the MVI package.
  *
- * Copyright (c) Qualcomm
  */
 class SearchAndReplace
 {

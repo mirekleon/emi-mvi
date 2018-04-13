@@ -1,10 +1,6 @@
 <?php
 
 /**
- * This file is part of the MVI package.
- *
- * Copyright (c) Qualcomm
- *
  * Extract class name from namespace
  * @param Mixed $input - input
  * @param $lowercase - lowercase result

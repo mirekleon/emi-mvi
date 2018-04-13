@@ -3,9 +3,7 @@
 namespace MVI\Component\Factory;
 
 /**
- * This file is part of the MVI package.
  *
- * Copyright (c) Qualcomm
  */
 use MVI\Component\Access\PropertyAccess;
 use MVI\Component\Access\GettablePropertyInterface;

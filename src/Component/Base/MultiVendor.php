@@ -6,9 +6,7 @@ use MVI\Component\Base\BaseMultiVendor;
 use MVI\Component\Access\MappablePropertyInterface;
 
 /**
- * This file is part of the MVI package.
  *
- * Copyright (c) Qualcomm
  */
 abstract class MultiVendor extends BaseMultiVendor implements MappablePropertyInterface
 {

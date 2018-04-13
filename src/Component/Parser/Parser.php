@@ -3,9 +3,7 @@
 namespace MVI\Component\Parser;
 
 /**
- * This file is part of the MVI package.
  *
- * Copyright (c) Qualcomm
  */
 abstract class Parser
 {

@@ -5,9 +5,7 @@ namespace MVI\Component\Base;
 use MVI\Exception\MviException;
 
 /**
- * This file is part of the MVI package.
  *
- * Copyright (c) Qualcomm
  */
 trait MagicTrait
 {

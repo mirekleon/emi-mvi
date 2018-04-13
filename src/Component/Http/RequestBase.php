@@ -2,6 +2,7 @@
 
 namespace MVI\Component\Http;
 
+use MVI\Component\Http\Response;
 use MVI\Component\Factory\Factory;
 use MVI\Component\Access\PropertyMapper;
 use MVI\Component\Access\PropertyAccess;
@@ -12,9 +13,7 @@ use MVI\Component\Access\SettablePropertyInterface;
 use MVI\Component\Access\GettablePropertyInterface;
 
 /**
- * This file is part of the MVI package.
  *
- * Copyright (c) Qualcomm
  */
 class RequestBase extends PropertyAccess implements
     CallerContextInterface,
@@ -51,15 +50,17 @@ class RequestBase extends PropertyAccess implements
         $mapper->map($this, $context);
         $factory = new Factory();
         $factory->set([
-            'request.cache'   => $this->requestCache,
-            'request.headers' => $this->requestHeaders,
-            'request.method'  => $this->requestMethod,
-            'request.url'     => $this->requestUrl,
-            'request.data'    => $this->requestData,
-            'mvi.version'     => $context->getMultiVendorVersion(),
-            'mvi.class'       => $context->getMultiVendorCallerClass(),
-            'mvi.method'      => $context->getMultiVendorCallerMethod()
+            'request.cache'    => $this->requestCache,
+            'request.headers'  => $this->requestHeaders,
+            'request.method'   => $this->requestMethod,
+            'request.url'      => $this->requestUrl,
+            'request.data'     => $this->requestData,
+            'mvi.version'      => $context->getMultiVendorVersion(),
+            'mvi.class'        => $context->getMultiVendorCallerClass(),
+            'mvi.method'       => $context->getMultiVendorCallerMethod(),
+            'workers.response' => new Response
         ]);
-        return $mapper->bindTo($factory);
+        $mapper->bindTo($factory);
+        return $factory;
     }
 }

@@ -8,9 +8,7 @@ use MVI\Interfaces\ResponseProviderInterface;
 use MVI\Interfaces\ContainerProviderInterface;
 
 /**
- * This file is part of the MVI package.
  *
- * Copyright (c) Qualcomm
  */
 abstract class BaseMultiVendor
 {

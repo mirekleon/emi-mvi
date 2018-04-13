@@ -6,9 +6,7 @@ use MVI\Component\Parser\Parser;
 use MVI\Component\Parser\ParserInterface;
 
 /**
- * This file is part of the MVI package.
  *
- * Copyright (c) Qualcomm
  */
 class ConstantParser extends Parser implements ParserInterface
 {

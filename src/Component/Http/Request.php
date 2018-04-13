@@ -10,9 +10,7 @@ use MVI\Exception\InvalidArgumentException;
 use MVI\Component\Http\Exception\RequestException;
 
 /**
- * This file is part of the MVI package.
  *
- * Copyright (c) Qualcomm
  */
 class Request extends RequestBase
 {
@@ -90,7 +88,6 @@ class Request extends RequestBase
      */
     public function make()
     {
-        $factory = parent::make();
-        return $factory;
+        return parent::make();
     }
 }
