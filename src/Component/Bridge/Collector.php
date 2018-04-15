@@ -1,6 +1,6 @@
 <?php
 
-namespace MVI\Component\Factory;
+namespace MVI\Component\Bridge;
 
 use MVI\Component\Access\PropertyAccess;
 use MVI\Component\Access\GettablePropertyInterface;
@@ -9,7 +9,7 @@ use MVI\Component\Access\SettablePropertyInterface;
 /**
  *
  */
-class Factory extends PropertyAccess implements SettablePropertyInterface, GettablePropertyInterface
+class Collector extends PropertyAccess implements SettablePropertyInterface, GettablePropertyInterface
 {
-
+    //
 }
